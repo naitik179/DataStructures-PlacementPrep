@@ -104,7 +104,7 @@ class Insertion
 
 	public static void main(String args[])
 	{
-		SLL list = new SLL();
+		Insertion list = new Insertion();
 		list.insertBegin(1);
 		list.insertAfter(1, 2);
 		list.insertEnd(3);
@@ -112,7 +112,6 @@ class Insertion
 		list.insertBefore(4,5);
 		list.insertBegin(7);
 		list.insertBefore(3, 8);
-		list.insertAfter(10 , 11);
 		list.printlist();
 		System.out.println();
 	}
