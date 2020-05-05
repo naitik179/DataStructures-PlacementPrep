@@ -68,9 +68,10 @@ class Insertion
 		{
 			findnode = findnode.next;
 		}
-		if(findnode == null)
+		if(findnode.next == null)
 		{
 			System.out.println("No Node Found");
+			return;
 		}
 		else{
 			newnode.next = findnode.next;
@@ -111,6 +112,7 @@ class Insertion
 		list.insertBefore(4,5);
 		list.insertBegin(7);
 		list.insertBefore(3, 8);
+		list.insertAfter(10 , 11);
 		list.printlist();
 		System.out.println();
 	}
