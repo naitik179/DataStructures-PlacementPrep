@@ -36,7 +36,7 @@ class Main {
 
 	public static void main(String args[]) 
 	{ 
-		LinkedList llist = new LinkedList(); 
+		Main llist = new Main(); 
 
 		llist.push(20); 
 		llist.push(4); 
