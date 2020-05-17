@@ -1,4 +1,4 @@
-class Main {
+class CircularSLL {
 
 		Node tail;
   
@@ -132,19 +132,69 @@ class Main {
 		}
 	}
 
+	void DeleteBegin(){
+
+		if(tail == null){
+			System.out.println("No Node to delete");
+		}
+		else{
+			if(tail.next == tail){
+				tail = null;
+				return;
+			}
+
+			else{
+				Node p = tail.next;
+				tail.next = p.next; 
+				return;
+			}
+		}
+	}
+
+	void DeleteEnd(){
+
+		if(tail == null){
+			System.out.println("No Node to delete");
+		}
+		else{
+			if(tail.next == tail){
+				tail = null;
+				return;
+			}
+			else{
+				Node p = tail.next;
+
+				do{
+					p = p.next;
+				}
+				while(p.next !=tail);
+
+				p.next = tail.next;
+				tail = p;
+			}
+		}
+
+	}
+
 	public static void main(String[] args) 
 { 
-    Main list = new Main();
+    CircularSLL list = new CircularSLL();
 		
     list.insertBegin(4); 
     list.insertBegin(2); 
     list.insertEnd(8); 
     list.insertEnd(12);
-		list.printlist();
+		list.printlist();  //        2->4->8->12->
 		list.addBeforeNode(2, 1);
-		list.printlist(); 
+		list.printlist();  //        1->2->4->8->12->
 		list.addAfterNode(12 , 0);
-		list.printlist();
+		list.printlist();  //        1->2->4->8->12->0->
+
+		list.DeleteBegin();
+		list.printlist();       //   2->4->8->12->0->
+
+		list.DeleteEnd();
+		list.printlist();    //      2->4->8->12->
  
 } 
 }
