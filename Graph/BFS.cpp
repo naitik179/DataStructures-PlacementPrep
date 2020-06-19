@@ -1,6 +1,4 @@
-// { Driver Code Starts
 #include <bits/stdc++.h>
-
 using namespace std;
 
 vector <int> bfs(vector<int> g[], int N);
@@ -24,39 +22,40 @@ int main() {
 }// } Driver Code Ends
 
 
-/* You have to complete this function*/
 
-/* Function to do BFS of graph
-*  g[]: adj list of the graph
-*  N : number of vertices
-*/
-vector <int> bfs(vector<int> g[], int N) {
+vector <int> bfs(vector<int> adj[], int N) {
 
     // Your code here
-    vector <bool> vis (N, false);
+    vector<int>ans;
+    
     int s = 0;
-    vis[s] = true; // Initially mark source vertex as visited(true)
-    vector <int> res;
-    queue<int> q;
-    q.push(s); // Push the source vertex to queue
-
-    while (!q.empty()) // Till queue is not empty
-    {
-        int t = q.front();
-        res.push_back (t);
-
-        q.pop(); // Pop the queue front
-
-        for (int v :
-             g[t]) // Traverse through all the connected components of front
+    
+    queue<int>q;
+    
+    bool visited[N];
+    for(int i=0;i<N;i++){
+        visited[i] = false;
+    }
+    visited[s] = true;
+    q.push(s);
+    
+    
+    while(!q.empty()){
+        
+        int f = q.front();
+        q.pop();
+        ans.push_back(f);
+        
+        for(int i=0;i<adj[f].size();i++)
         {
-            if (!vis[v]) { // If they are not visited, mark them visited and add
-                           // to queue
-                vis[v] = true;
-                q.push(v);
+            if(visited[adj[f][i]] == false){
+                
+                visited[adj[f][i]] = true;
+                q.push(adj[f][i]);
             }
         }
     }
-    return res;
-   
+    
+    return ans;
+    
 }
