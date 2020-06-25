@@ -42,3 +42,20 @@ class GFG
     }
 }
  
+
+/*
+
+
+		CATALAN NUMBER 
+
+		for(int i=2;i<=n;i++){
+            c[i] = 0;
+            for(int j=0;j<i;j++){
+                c[i] += c[j]*c[i-j-1];
+            }
+        }
+
+
+
+
+*/
