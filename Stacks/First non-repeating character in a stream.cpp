@@ -25,3 +25,32 @@ int main() {
     }
 	return 0;
 }
+
+/////////////////////////////////////// another Approach faster using Queue
+
+string Solution::solve(string A) {
+    
+    int n = A.size();
+    vector<int> repeated(26,0);
+    string res="";
+    deque<char> q;
+    
+    for(int i = 0; i < n; i++){
+        if(repeated[A[i]-'a']==0){
+            q.push_back(A[i]);
+        }
+        repeated[A[i]-'a']++;
+        while(!q.empty() && repeated[q.front()-'a']>1){
+            q.pop_front();
+        }
+        
+        if(q.empty()){
+            res+='#';
+        }
+        else{
+            res+=q.front();
+        }
+    }
+    
+    return res;
+}
