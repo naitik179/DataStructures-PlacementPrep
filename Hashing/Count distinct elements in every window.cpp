@@ -1,56 +1,23 @@
-
-#include <bits/stdc++.h>
-using namespace std;
-
-vector <int> countDistinct(int[], int, int);
-int main() {
-    int t;
-    cin >> t;
-    while (t--) {
-        int n, k;
-        cin >> n >> k;
-        int a[n];
-        for (int i = 0; i < n; i++) cin >> a[i];
-        vector <int> res = countDistinct(a, n, k);
-        for (int i : res) cout << i << " ";
-        cout << endl;
-    }
-    return 0;
-}
-
-vector <int> countDistinct(int arr[], int N, int k) {
-    
-    map<int, int> hm; 
-    int dist_count = 0; 
-    
-    vector<int>v;
+vector <int> countDistinct (int A[], int n, int k)
+{
+    unordered_map<int, int> um;
+    vector <int> result;
+	// count number of distinct elements for first window of size k
     for (int i = 0; i < k; i++) 
-    { 
-       if (hm[arr[i]] == 0) 
-       { 
-           dist_count++; 
-       } 
-        hm[arr[i]] += 1; 
-    } 
-    v.push_back(dist_count);
-  
-   for (int i = k; i < N; i++) 
-   { 
-   
-     if (hm[arr[i-k]] == 1) 
-     { 
-        dist_count--; 
-     } 
+        um[A[i]]++;
+    
+    result.push_back(um.size());
 
-     hm[arr[i-k]] -= 1; 
+	// calculate answer for rest of the windows
+    for (int i = 1; i < n - k + 1; i++) 
+    {
+        um[A[i - 1]]--;
+        if (um[A[i - 1]] <= 0) 
+            um.erase(A[i - 1]);
+        
+        um[A[i + k - 1]]++;
 
-    if (hm[arr[i]] == 0) 
-    { 
-       dist_count++; 
-    } 
-    hm[arr[i]] += 1; 
-  
-    v.push_back(dist_count);
-  } 
-    return v;
+        result.push_back(um.size());
+    }
+    return result;
 }
