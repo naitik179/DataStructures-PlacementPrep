@@ -1,35 +1,29 @@
-class Sol
-{
-    static Node prev , first , second;
-    
-    public static void INORDER(Node root) {
-        if (root == null)
-            return;
-        INORDER(root.left);
-        if (prev != null && prev.data > root.data) {
-            if (first == null) 
-            {
-                first = prev;
-            }
-            second = root;
+class Solution {
+    public void recoverTree(TreeNode root) {
+        inOrder(root);
+        if (swaps[0] != null && swaps[1] != null) {
+            int tmp = swaps[0].val;
+            swaps[0].val = swaps[1].val;
+            swaps[1].val = tmp;
         }
-        prev = root;
-        INORDER(root.right);
     }
-    public Node correctBST(Node root)
-    {
-        //code here.
-        
-        prev = null;
-        first = null;
-        second = null;
-        INORDER(root);
-        int temp = first.data;
-        first.data = second.data;
-        second.data = temp;
-        
-           
-        return root;
+
+    TreeNode cur;
+    TreeNode[] swaps = new TreeNode[2]; 
+    private void inOrder(TreeNode node) {
+        if (null == node) {
+            return;
+        }
+
+        inOrder(node.left);
+        if (cur != null && cur.val > node.val) {
+          /** first met, shoule put both cur & node, because maybe this two nodes will be swaped */
+          if (swaps[0] == null) {
+            swaps[0] = cur;
+          }
+          swaps[1] = node;
+        }
+        cur = node;
+        inOrder(node.right);
     }
- 
 }

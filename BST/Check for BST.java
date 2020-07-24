@@ -1,4 +1,3 @@
-//Initial Template for Java
 import java.util.LinkedList; 
 import java.util.Queue; 
 import java.io.*;
@@ -103,26 +102,6 @@ class GfG {
     }
   
 }
-
-
-// } Driver Code Ends
-
-
-//User function Template for Java
-
-/*
-Structure of Node:
-class Node{
-    int data;
-    Node left;
-    Node right;
-    Node(int data){
-        this.data = data;
-        left=null;
-        right=null;
-    }
-}
-*/
 
 public class Tree
 {
