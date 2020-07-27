@@ -1,79 +1,88 @@
-#include <bits/stdc++.h>
-using namespace std;
+// C++ program to find med in 
+// stream of running integers 
+#include<bits/stdc++.h> 
+using namespace std; 
 
-class FindMedian
-{
-	public:
-		void insertHeap(int &);
-		double getMedian();
-	private:
-		double median; //Stores current median
-		priority_queue<int> max; //Max heap for lower values
-		priority_queue<int, vector<int>, greater<int> > min; //Min heap for greater values
-		void balanceHeaps(); //Method used by insertHeap
-};
+// function to calculate med of stream 
+void printMedians(double arr[], int n) 
+{ 
+	// max heap to store the smaller half elements 
+	priority_queue<double> s; 
 
-// Function to insert heap
-void FindMedian::insertHeap(int &x)
-{
-	// Your code here
-	if(max.size() == 0){
-	    max.push(x);
-	    median = x;
-	    return;
-	}
-	if(max.size() > min.size()){
-	    if(x < max.top()){
-	        min.push(max.top());
-	        max.pop();
-	        max.push(x);
-	    }
-	    else{
-	        min.push(x);
-	    }
-	    
-	    median = (max.top() + min.top())/2;
-	}
-	else
-       {
-           if(x<=max.top())
-             max.push(x);
-           else
-            {
-            	// **** order of sequence is importanr 1 push in the min then push the max element from the max heap plus pop ***
-                min.push(x);
-                max.push(min.top());
-                min.pop();
-            }
-            median=max.top();
-       }
-}
+	// min heap to store the greater half elements 
+	priority_queue<double,vector<double>,greater<double> > g; 
 
-// Function to balance heaps
-void FindMedian::balanceHeaps()
-{
-	// Your code here
-	return ;
-}
+	double med = arr[0]; 
+	s.push(arr[0]); 
 
-// Function to return getMedian
-double FindMedian::getMedian()
-{
-	// Your code here
-	return median;
-}
+	cout << med << endl; 
 
-int main()
-{
-    int n, x;
-	FindMedian Ans;
-	cin >> n;
-	for(int i = 1;i<= n; ++i)
-	{
-		cin >> x;
-		Ans.insertHeap(x);
-	    cout << floor(Ans.getMedian()) << endl;
-	}
-	// }
-	return 0;
+	// reading elements of stream one by one 
+	/* At any time we try to make heaps balanced and 
+		their sizes differ by at-most 1. If heaps are 
+		balanced,then we declare median as average of 
+		min_heap_right.top() and max_heap_left.top() 
+		If heaps are unbalanced,then median is defined 
+		as the top element of heap of larger size */
+	for (int i=1; i < n; i++) 
+	{ 
+		double x = arr[i]; 
+
+		// case1(left side heap has more elements) 
+		if (s.size() > g.size()) 
+		{ 
+			if (x < med) 
+			{ 
+				g.push(s.top()); 
+				s.pop(); 
+				s.push(x); 
+			} 
+			else
+				g.push(x); 
+
+			med = (s.top() + g.top())/2.0; 
+		} 
+
+		// case2(both heaps are balanced) 
+		else if (s.size()==g.size()) 
+		{ 
+			if (x < med) 
+			{ 
+				s.push(x); 
+				med = (double)s.top(); 
+			} 
+			else
+			{ 
+				g.push(x); 
+				med = (double)g.top(); 
+			} 
+		} 
+
+		// case3(right side heap has more elements) 
+		else
+		{ 
+			if (x > med) 
+			{ 
+				s.push(g.top()); 
+				g.pop(); 
+				g.push(x); 
+			} 
+			else
+				s.push(x); 
+
+			med = (s.top() + g.top())/2.0; 
+		} 
+
+		cout << med << endl; 
+	} 
+} 
+
+// Driver program to test above functions 
+int main() 
+{ 
+	// stream of integers 
+	double arr[] = {5, 15, 10, 20, 3}; 
+	int n = sizeof(arr)/sizeof(arr[0]); 
+	printMedians(arr, n); 
+	return 0; 
 } 
