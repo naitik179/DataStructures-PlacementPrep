@@ -38,9 +38,6 @@ int main() {
 	         else{
 	             flag = dp[(int)n-1];
 	         }
-	       //  for(int i=0;i<n;i++){
-	       //      cout<<dp[i]<<" ";
-	       //  }
 	    }
 	    cout<<flag<<"\n";
 	}

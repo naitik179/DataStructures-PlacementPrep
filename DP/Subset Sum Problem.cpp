@@ -39,30 +39,35 @@ bool findPartition(int a[], int n) {
         sum+=a[i];
     }
     
-    bool dp[(sum/2) +1][n+1];
-    
-    if(sum %2 !=0){
-        return false;
-    }
-    
-    for(int i=0;i<=n;i++){
-        dp[0][i] = true;
-    }
-    
-    for(int i=1;i<=sum/2;i++){
-        dp[i][0] = false;
-    }
-    
-    for(int i=1;i<=sum/2;i++){
-        for(int j=1;j<=n;j++){
-            if(i >= a[j-1]){
-                dp[i][j] = (dp[i - a[j-1]][j-1] || dp[i][j-1]);
-            }
-            else{
-                dp[i][j] = dp[i][j-1];
-            }
-        }
-    }
-    
-    return dp[sum/2][n];
+    bool subset[n + 1][sum + 1]; 
+  
+    // If sum is 0, then answer is true 
+    for (int i = 0; i <= n; i++) 
+        subset[i][0] = true; 
+  
+    // If sum is not 0 and set is empty, 
+    // then answer is false 
+    for (int i = 1; i <= sum; i++) 
+        subset[0][i] = false; 
+  
+    // Fill the subset table in botton up manner 
+    for (int i = 1; i <= n; i++) { 
+        for (int j = 1; j <= sum; j++) { 
+            if (j < set[i - 1]) 
+                subset[i][j] = subset[i - 1][j]; 
+            if (j >= set[i - 1]) 
+                subset[i][j] = subset[i - 1][j] 
+                               || subset[i - 1][j - set[i - 1]]; 
+        } 
+    } 
+  
+    /*   // uncomment this code to print table 
+     for (int i = 0; i <= n; i++) 
+     { 
+       for (int j = 0; j <= sum; j++) 
+          printf ("%4d", subset[i][j]); 
+       printf("\n"); 
+     }*/
+  
+    return subset[n][sum]; 
 }
