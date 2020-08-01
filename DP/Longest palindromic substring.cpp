@@ -21,7 +21,7 @@ int longestPalSubstr(string str)
 { 
 	// get length of input string 
 	int n = str.size(); 
-
+ 
 	// table[i][j] will be false if substring 
 	// str[i..j] is not palindrome. 
 	// Else table[i][j] will be true 
