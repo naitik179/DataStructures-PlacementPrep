@@ -1,27 +1,17 @@
-// { Driver Code Starts
-//Initial Template for C++
-
 #include<bits/stdc++.h>
 using namespace std;
 
-
- // } Driver Code Ends
-
-
-//User function Template for C++
-
-//You need to complete this function
 bool isPrime(int N)
 {
     int dp[N+1] = {0};
     
     dp[1] = 1;
     
-    for(int p = 2; p*p<=N+1; p++){
+    for(int p = 2; p*p<=N; p++){
         
         if(dp[p] == 0){
             
-            for(int c = p*p ; c<=N+1;c+=p){
+            for(int c = p*p ; c<=N;c+=p){
                 dp[c] =1;
             }
         }
@@ -36,9 +26,6 @@ bool isPrime(int N)
         return false;
     }
 }
-
-
-// { Driver Code Starts.
 
 int main()
 {
@@ -58,4 +45,3 @@ int main()
     }
     return 0;
 }
-  // } Driver Code Ends
