@@ -4,7 +4,6 @@ int Solution::solve(vector<int> &A, int B) {
     long long int l = 0;
     long long int r = maxi;
     
-    long long int mid;
     long long ans = 0;
     while(l <= r){
         long long int mid = (l + r)/2;

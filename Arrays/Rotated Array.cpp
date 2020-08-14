@@ -1,5 +1,5 @@
 int Solution::findMin(const vector<int> &A) {
-   
+    
     int n = A.size();
     int l = 0;
     int r = n-1;
@@ -24,4 +24,5 @@ int Solution::findMin(const vector<int> &A) {
     
     return -1;
 }
- // 4 5 6 7 0 1 2
+
+// Find the minimum element. form the rotated array
