@@ -19,7 +19,7 @@ int main() {
 	    int i = 0;
 	    while(i < n-1){
 	        
-	        while( i < n-1 && a[i] >= a[i+1]){
+	        while( i < n-1 && a[i] >= a[i+1]){ // note - i < n -1 so i is compared with i+1
 	            i++;
 	        }
 	        
@@ -31,7 +31,7 @@ int main() {
 	        }
 	        int buy = i;
 	        i++;
-	        while(i<n && a[i] >= a[i-1]){
+	        while(i<n && a[i] >= a[i-1]){ // i < n so compare i and i -1 
 	            i++;
 	        }
 	        flag = 1;

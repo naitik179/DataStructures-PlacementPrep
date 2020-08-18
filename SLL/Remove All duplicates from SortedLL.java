@@ -1,25 +1,5 @@
 class LinkedList 
 { 
-	Node head=null; /* head of linked list */
-	class Node 
-	{ 
-		int val; /* value in the node */
-		Node next; 
-		Node(int v) 
-		{ 
-			/* default value of the next 
-			pointer field */
-			val = v; 
-			next = null; 
-		} 
-	} 
-	public void insert(int data) 
-	{ 
-		Node new_node = new Node(data); 
-		new_node.next = head; 
-		head = new_node; 
-	} 
-
 	/* Function to remove all occurrences 
 	of duplicate elements */
 	public void removeAllDuplicates() 
@@ -70,25 +50,5 @@ class LinkedList
 			System.out.print(trav.val + " "); 
 			trav = trav.next; 
 		} 
-	} 
-
-	public static void main(String[] args) 
-	{ 
-		LinkedList ll = new LinkedList(); 
-		ll.insert(53); 
-		ll.insert(53); 
-		ll.insert(49); 
-		ll.insert(49); 
-		ll.insert(35); 
-		ll.insert(28); 
-		ll.insert(28); 
-		ll.insert(23); 
-		System.out.println("Before removal of duplicates"); 
-		ll.printList(); 
-
-		ll.removeAllDuplicates(); 
-
-		System.out.println("\nAfter removal of duplicates"); 
-		ll.printList(); 
 	} 
 } 

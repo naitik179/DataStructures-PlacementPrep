@@ -10,8 +10,6 @@ class Main {
 			next = null; 
 		} 
 	} 
-
-	
 	public void push(int new_data) 
 	{ 
 	

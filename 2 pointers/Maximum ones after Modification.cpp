@@ -1,6 +1,5 @@
 int Solution::solve(vector<int> &A, int B) {
     
-    
     int n=A.size();
     int l=0, i=0, count=0;
     int ans=INT_MIN;
@@ -15,7 +14,6 @@ int Solution::solve(vector<int> &A, int B) {
         ans=max(ans, i-l+1);
     }
     return ans;
-    
 }
 
 

@@ -25,4 +25,4 @@ int Solution::findMin(const vector<int> &A) {
     return -1;
 }
 
-// Find the minimum element. form the rotated array
+// Find the minimum element. form the rotated array 4 5 6 7 0 1 2
