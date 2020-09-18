@@ -80,7 +80,6 @@ public static int countrange(Node root , int l , int r)
 }
 public static int getCountOfNode(Node root,int l, int h)
 {
-    
     return countrange(root , l , h);
 }
 
